@@ -1,4 +1,6 @@
-import { RichArticleEditor } from "./RichArticleEditor";
+import { RichArticleEditor } from "rich-article-creator";
+import "rich-article-creator/style.css";
+// import "./custom-theme.css"; // Uncomment to apply custom theme
 
 function App() {
   return (

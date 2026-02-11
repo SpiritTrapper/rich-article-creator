@@ -15,8 +15,15 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
-    "types": ["vite/client"]
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@contexts/*": ["src/contexts/*"],
+      "@extensions/*": ["src/extensions/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@pm/*": ["src/pm/*"],
+      "@shared/*": ["src/shared/*"]
+    }
   },
-  "include": ["src", "vite.config.ts"],
-  "exclude": ["node_modules", "dist", "packages"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }

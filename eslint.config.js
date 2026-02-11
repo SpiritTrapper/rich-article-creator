@@ -36,7 +36,10 @@ export default defineConfig([
       ecmaVersion: 2020,
       globals: globals.browser,
       parserOptions: {
-        project: "./tsconfig.json",
+        project: [
+          "./tsconfig.json",
+          "./packages/rich-article-creator/tsconfig.json",
+        ],
       },
     },
     rules: {
@@ -71,37 +74,32 @@ export default defineConfig([
               position: "before",
             },
             {
-              pattern: "@app/**",
-              group: "internal",
-              position: "before",
-            },
-            {
-              pattern: "@pages/**",
-              group: "internal",
-              position: "before",
-            },
-            {
-              pattern: "@layouts/**",
-              group: "internal",
-              position: "before",
-            },
-            {
-              pattern: "@features/**",
-              group: "internal",
-              position: "before",
-            },
-            {
               pattern: "@components/**",
               group: "internal",
               position: "before",
             },
             {
-              pattern: "@shared/**",
+              pattern: "@contexts/**",
               group: "internal",
               position: "before",
             },
             {
-              pattern: "@styles/**",
+              pattern: "@extensions/**",
+              group: "internal",
+              position: "before",
+            },
+            {
+              pattern: "@hooks/**",
+              group: "internal",
+              position: "before",
+            },
+            {
+              pattern: "@pm/**",
+              group: "internal",
+              position: "before",
+            },
+            {
+              pattern: "@shared/**",
               group: "internal",
               position: "before",
             },

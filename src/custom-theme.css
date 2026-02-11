@@ -1,0 +1,48 @@
+/**
+ * Example Custom Theme for Rich Article Editor
+ *
+ * Uncomment any section below to customize the editor appearance.
+ * Import this file after "rich-article-creator/style.css" in your App.tsx
+ */
+
+:root {
+  /* ===== Uncomment to enable Dark Theme ===== */
+  /*
+  --editor-text-color: #e0e0e0;
+  --editor-text-auxiliary: #a0a0a0;
+  --editor-bg: #1a1a1a;
+  --editor-bg-white: #2a2a2a;
+  --editor-bg-fields: #2a2a2a;
+  --editor-border-color: #404040;
+  --editor-primary: #4a9eff;
+  --editor-link: #4a9eff;
+  --editor-selection: #2a4a6a;
+  --editor-code-bg: #2a2a2a;
+  --editor-shadow: rgba(0, 0, 0, 0.5);
+  */
+
+  /* ===== Uncomment to enable Compact Layout ===== */
+  /*
+  --editor-font-size-base: 16px;
+  --editor-font-size-h2: 20px;
+  --editor-font-size-h3: 18px;
+  --editor-padding-horizontal: 24px;
+  --editor-margin-paragraph: 12px;
+  --editor-margin-heading-top: 24px;
+  --editor-margin-heading-bottom: 16px;
+  */
+
+  /* ===== Uncomment to customize Brand Colors ===== */
+  /*
+  --editor-primary: #7c3aed;
+  --editor-link: #7c3aed;
+  --editor-success: #10b981;
+  --editor-error: #ef4444;
+  */
+
+  /* ===== Uncomment to change Typography ===== */
+  /*
+  --editor-font-family: "Inter", system-ui, sans-serif;
+  --editor-font-family-mono: "Fira Code", monospace;
+  */
+}

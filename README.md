@@ -1,27 +1,26 @@
-# rich-article-creator
+# Rich Article Creator
 
-Rich text article editor React component built on ProseMirror. Publishable as an npm package.
+Customizable rich text article editor React component built on ProseMirror.
+
+## Project Structure
+
+npm workspaces monorepo:
+
+- **`packages/rich-article-creator/`** — Publishable npm package
+- **Root** — Demo application
 
 ## Features
 
-- Block types: paragraphs, headings (h2/h3), bullet & ordered lists (with Russian alphabetic counter), blockquotes, code blocks, collapsible details/summary
-- Inline formatting: bold, italic, underline, strikethrough, text color, highlight, links, code
-- Text indent and list indent/outdent
-- Media blocks: images (resizable, with alignment), videos, audio waveforms (wavesurfer.js), image carousels (embla-carousel)
-- Hero/cover image with deletion protection
-- Drag-and-drop carousel image reordering (@dnd-kit)
-- Floating "+" menu for inserting media blocks
-- Mobile-responsive toolbar with scroll-based expand/pin
-- Debounced auto-save via react-hook-form
-- Core Web Vitals monitoring in dev mode (web-vitals)
-
-## Performance
-
-Heavy dependencies are lazy-loaded to reduce initial bundle size:
-
-- **wavesurfer.js** (~51KB) -- loaded on demand when an audio waveform node renders
-- **embla-carousel** (~35KB) -- loaded on demand when a carousel node renders
-- **CarouselModal + @dnd-kit** (~81KB) -- loaded on demand when the carousel editing modal opens
+- **Block types**: Paragraphs, headings (h2/h3), bullet & ordered lists, blockquotes, code blocks, collapsible details/summary
+- **Inline formatting**: Bold, italic, underline, strikethrough, text color, highlight, links, inline code
+- **Indentation**: Text indent and list indent/outdent
+- **Media**: Resizable images, videos, audio waveforms (wavesurfer.js), image carousels (embla-carousel)
+- **Hero image**: Cover image with deletion protection
+- **Drag-and-drop**: Carousel image reordering (@dnd-kit)
+- **Floating "+" menu**: Quick media block insertion
+- **Mobile-responsive toolbar**: Scroll-based expand/pin
+- **Auto-save**: Debounced saving via react-hook-form
+- **80+ CSS variables**: Full visual customization without touching components
 
 ## Install
 
@@ -29,10 +28,14 @@ Heavy dependencies are lazy-loaded to reduce initial bundle size:
 npm install rich-article-creator
 ```
 
-### Peer dependencies
+Peer dependencies:
 
 ```bash
-npm install react react-dom react-hook-form prosemirror-commands prosemirror-dropcursor prosemirror-gapcursor prosemirror-history prosemirror-inputrules prosemirror-keymap prosemirror-model prosemirror-schema-list prosemirror-state prosemirror-transform prosemirror-view
+npm install react react-dom react-hook-form \
+  prosemirror-commands prosemirror-dropcursor prosemirror-gapcursor \
+  prosemirror-history prosemirror-inputrules prosemirror-keymap \
+  prosemirror-model prosemirror-schema-list prosemirror-state \
+  prosemirror-transform prosemirror-view
 ```
 
 ## Usage
@@ -42,42 +45,70 @@ import { RichArticleEditor } from "rich-article-creator";
 import "rich-article-creator/style.css";
 
 function App() {
-  return <RichArticleEditor />;
+  return (
+    <RichArticleEditor
+      defaultTitle="My Article"
+      onSave={async (data) => console.log(data.title, data.content)}
+      onPublish={(data) => console.log("Publish:", data)}
+    />
+  );
 }
 ```
 
-### Exports
+### With Custom Theme
 
-| Export              | Type      | Description                         |
-| ------------------- | --------- | ----------------------------------- |
-| `RichArticleEditor` | Component | Main editor component               |
-| `CarouselItem`      | Type      | Shape of a carousel image item      |
-| `DropdownItem`      | Type      | Shape of a floating/marks menu item |
+```tsx
+import "rich-article-creator/style.css";
+import "./my-theme.css";
+```
+
+```css
+/* my-theme.css */
+:root {
+  --editor-primary: #7c3aed;
+  --editor-link: #7c3aed;
+  --editor-font-family: "Inter", sans-serif;
+}
+```
+
+See the [package README](./packages/rich-article-creator/README.md) for full props reference and [CUSTOMIZATION.md](./packages/rich-article-creator/CUSTOMIZATION.md) for the complete theming guide.
 
 ## Development
 
 ```bash
-npm run dev        # Start Vite dev server with HMR
-npm run build      # TypeScript check + Vite production build + declaration emit
-npm run lint       # ESLint check
-npm run preview    # Preview production build locally
+npm install              # Install all workspaces
+npm run dev              # Start demo app dev server
+npm run build            # Build package
+npm run lint             # ESLint
 ```
 
-### Build output
+### Structure
 
 ```
-dist/
-  index.js          # ESM library entry
-  style.css         # All styles (Tailwind + editor CSS)
-  *.js              # Lazy-loaded chunks (wavesurfer, carousel, dnd-kit)
-  *.d.ts            # TypeScript declarations
+rich-article-creator/
+├── packages/rich-article-creator/   # npm package
+│   ├── src/
+│   │   ├── components/              # UI components
+│   │   ├── extensions/              # ProseMirror node views
+│   │   ├── hooks/                   # React hooks
+│   │   ├── pm/                      # ProseMirror core
+│   │   ├── shared/                  # Types and helpers
+│   │   ├── globals.css              # CSS variables + styles
+│   │   └── index.tsx                # Entry point
+│   ├── CUSTOMIZATION.md
+│   └── README.md
+├── src/App.tsx                      # Demo app
+└── package.json                     # Workspace root
 ```
 
-## Tech stack
+## Tech Stack
 
-- **React 19** with React Compiler (babel-plugin-react-compiler)
-- **ProseMirror** -- schema, commands, keymap, plugins, React node views
-- **Tailwind CSS v4** via @tailwindcss/vite
-- **Vite** library mode (ESM)
-- **lucide-react** for icons
-- **web-vitals** for Core Web Vitals measurement (dev only)
+- **React 19** with React Compiler
+- **ProseMirror** — Schema, commands, keymap, plugins, React node views
+- **Tailwind CSS v4** — Utility classes + CSS custom properties
+- **Vite 7** — Library build (ESM)
+- **TypeScript 5.9**
+
+## License
+
+MIT
